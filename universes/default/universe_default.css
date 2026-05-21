@@ -1,0 +1,48 @@
+body {
+    /* Основные цвета окон - Глубокий темно-фиолетовый/синий */
+    --background-primary: #1a1625;
+    --background-secondary: #130f1c;
+    
+    /* Текст - цвет старого пергамента */
+    --text-normal: #eaddb6;
+    --text-muted: #8b7d9c;
+    
+    /* Акценты - Золото алхимиков */
+    --interactive-accent: #f1c40f;
+    --interactive-accent-hover: #d4ac0d;
+    
+    /* Рамки - Темная латунь/бронза */
+    --background-modifier-border: #4a3b52;
+    
+    /* Шрифт с засечками для атмосферы фэнтези */
+    --font-text: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    
+    /* Цвета полосок JRPG (Переопределяются в компаньоне, но это фоллбэки) */
+    --rpg-hp-color: #e74c3c;
+    --rpg-xp-color: #9b59b6;
+    --rpg-border-color: #f1c40f;
+    --rpg-dialog-border: #4a3b52;
+}
+
+/* Добавляем легкое свечение вокруг портрета (только для этой вселенной!) */
+.jrpg-sprite-container {
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.2);
+}
+
+/* Окно диалога выглядит как старая записка */
+.jrpg-dialog-area {
+    background: linear-gradient(135deg, #1e1829 0%, #130f1c 100%);
+    border-radius: 12px;
+}
+
+/* Выделение золотым текстом имен в диалоге */
+.jrpg-character-name {
+    text-shadow: 0 0 5px rgba(241, 196, 15, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Редкость предметов: Свечения в инвентаре */
+.rpg-rarity-common .rpg-item-name { color: #bdc3c7; }
+.rpg-rarity-rare .rpg-item-name { color: #3498db; text-shadow: 0 0 8px rgba(52, 152, 219, 0.5); }
+.rpg-rarity-epic .rpg-item-name { color: #9b59b6; text-shadow: 0 0 8px rgba(155, 89, 182, 0.5); }
+.rpg-rarity-legendary .rpg-item-name { color: #f1c40f; text-shadow: 0 0 10px rgba(241, 196, 15, 0.8); font-weight: bold; }

@@ -1,0 +1,10 @@
+{
+	"id": "chronicle-md",
+	"name": "Chronicle.md",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Геймифицированный ежедневник в стиле JRPG",
+	"author": "JohnOne & Gemini-3.1pro",
+	"authorUrl": "",
+	"isDesktopOnly": true
+}

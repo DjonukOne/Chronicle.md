@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicle.md: Кузница Миров</title>
+
+    <script type="module"
+        crossorigin>(function () { let e = document.createElement(`link`).relList; if (e && e.supports && e.supports(`modulepreload`)) return; for (let e of document.querySelectorAll(`link[rel="modulepreload"]`)) n(e); new MutationObserver(e => { for (let t of e) if (t.type === `childList`) for (let e of t.addedNodes) e.tagName === `LINK` && e.rel === `modulepreload` && n(e) }).observe(document, { childList: !0, subtree: !0 }); function t(e) { let t = {}; return e.integrity && (t.integrity = e.integrity), e.referrerPolicy && (t.referrerPolicy = e.referrerPolicy), e.crossOrigin === `use-credentials` ? t.credentials = `include` : e.crossOrigin === `anonymous` ? t.credentials = `omit` : t.credentials = `same-origin`, t } function n(e) { if (e.ep) return; e.ep = !0; let n = t(e); fetch(e.href, n) } })(); var e = class {
+                constructor(e) { this.container = e } render() {
+                    let e = [{ group: `Без засечек (Модерн / Sci-Fi)`, fonts: [`'Segoe UI', sans-serif`, `Arial, sans-serif`, `Verdana, sans-serif`, `Tahoma, sans-serif`, `'Trebuchet MS', sans-serif`, `Helvetica, sans-serif`] }, { group: `С засечками (Фэнтези / Книги)`, fonts: [`'Georgia', serif`, `'Times New Roman', serif`, `'Garamond', serif`, `'Palatino Linotype', serif`, `'Book Antiqua', serif`] }, { group: `Моноширинные (Киберпанк / Код)`, fonts: [`'Courier New', monospace`, `'Lucida Console', monospace`, `'Consolas', monospace`] }, { group: `Декоративные`, fonts: [`'Comic Sans MS', cursive`, `'Brush Script MT', cursive`, `Impact, fantasy`] }], t = ``; e.forEach(e => { t += `<optgroup label="${e.group}">`, e.fonts.forEach(e => t += `<option value="${e}">${e.split(`,`)[0].replace(/'/g, ``)}</option>`), t += `</optgroup>` }), this.container.innerHTML = `
+            <h2>🎨 Настройка Цветов и Шрифта</h2>
+            <div style="margin-bottom:15px;"><label>ID Вселенной:</label><input type="text" id="css_id" value="my_universe" class="input-base"></div>
+            
+            <div style="margin-bottom:20px;">
+                <label>Шрифт интерфейса:</label>
+                <select id="css_font" class="input-base">${t}</select>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Главный фон (Окна):</label><input type="color" id="css_bg1" value="#1a1625"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Фон панелей (Сайдбары):</label><input type="color" id="css_bg2" value="#130f1c"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Основной текст:</label><input type="color" id="css_text1" value="#eaddb6"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Вторичный текст:</label><input type="color" id="css_text2" value="#8b7d9c"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Акцент (Кнопки, Имена):</label><input type="color" id="css_accent" value="#f1c40f"></div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Рамки и обводки:</label><input type="color" id="css_border" value="#4a3b52"></div>
+            
+            <div style="margin-top:25px; padding:15px; background:#15151e; border:1px solid #4a3b52; border-radius:8px;">
+                <h3 style="margin-top:0; color:#d4af37;">Резервные цвета полосок</h3>
+                <p style="font-size:12px; color:#aaa; margin-top:0;">Используются, только если у Компаньона не заданы собственные цвета.</p>
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Здоровье (HP):</label><input type="color" id="css_hp" value="#e74c3c"></div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px; align-items:center;"><label>Опыт (XP):</label><input type="color" id="css_xp" value="#9b59b6"></div>
+                <div style="display:flex; justify-content:space-between; align-items:center;"><label>Настроение:</label><input type="color" id="css_mood" value="#f1c40f"></div>
+            </div>
+
+            <button id="btn-download-css" style="width:100%; padding:15px; margin-top:20px; background:#d4af37; color:#000; font-weight:bold; border:none; border-radius:8px; cursor:pointer;">💾 Скачать universe.css</button>
+        `, this.attachEvents(), this.updatePreview()
+                } attachEvents() { this.container.querySelectorAll(`input[type="color"], select`).forEach(e => e.addEventListener(`input`, () => this.updatePreview())), this.container.querySelector(`#btn-download-css`).addEventListener(`click`, () => this.download()) } updatePreview() { let e = document.querySelector(`.obsidian-mock`); e && (e.style.fontFamily = document.getElementById(`css_font`).value, e.style.setProperty(`--p-bg1`, document.getElementById(`css_bg1`).value), e.style.setProperty(`--p-bg2`, document.getElementById(`css_bg2`).value), e.style.setProperty(`--p-text1`, document.getElementById(`css_text1`).value), e.style.setProperty(`--p-text2`, document.getElementById(`css_text2`).value), e.style.setProperty(`--p-accent`, document.getElementById(`css_accent`).value), e.style.setProperty(`--p-border`, document.getElementById(`css_border`).value), e.style.setProperty(`--p-hp`, document.getElementById(`css_hp`).value), e.style.setProperty(`--p-xp`, document.getElementById(`css_xp`).value), e.style.setProperty(`--p-mood`, document.getElementById(`css_mood`).value)) } download() { let e = document.getElementById(`css_id`).value || `default`, t = `body {\n  --background-primary: ${document.getElementById(`css_bg1`).value};\n  --background-secondary: ${document.getElementById(`css_bg2`).value};\n  --text-normal: ${document.getElementById(`css_text1`).value};\n  --text-muted: ${document.getElementById(`css_text2`).value};\n  --interactive-accent: ${document.getElementById(`css_accent`).value};\n  --background-modifier-border: ${document.getElementById(`css_border`).value};\n  --font-text: ${document.getElementById(`css_font`).value};\n  --rpg-hp-color: ${document.getElementById(`css_hp`).value};\n  --rpg-xp-color: ${document.getElementById(`css_xp`).value};\n  --rpg-mood-color: ${document.getElementById(`css_mood`).value};\n  --rpg-border-color: ${document.getElementById(`css_accent`).value};\n  --rpg-dialog-border: ${document.getElementById(`css_border`).value};\n}`; r(`universe_${e}.css`, t) }
+            }, t = class {
+                constructor(e) { this.container = e, this.emoCount = 0 } render() {
+                    this.container.innerHTML = `
+            <h2>🧙‍♂️ Генератор Компаньона</h2>
+            <div style="display:flex; gap:15px; margin-bottom:15px;">
+                <div style="flex:1"><label>ID:</label><input type="text" id="c_id" value="my_hero" class="input-base"></div>
+                <div style="flex:1"><label>Имя:</label><input type="text" id="c_name" value="Архимаг" class="input-base"></div>
+                <div style="flex:1"><label>Стартовое HP:</label><input type="number" id="c_hp" value="100" class="input-base"></div>
+            </div>
+            
+            <h3 style="color:#d4af37;">Терминология и Цвета</h3>
+            <div style="display:flex; gap:15px; margin-bottom:15px;">
+                <div style="flex:1"><label>HP Термин:</label><input type="text" id="ct_hp" value="Запас сил" class="input-base"></div>
+                <div style="flex:1"><label>XP Термин:</label><input type="text" id="ct_xp" value="Знания" class="input-base"></div>
+                <div style="flex:1"><label>Настроение Термин:</label><input type="text" id="ct_mood" value="Мораль" class="input-base"></div>
+            </div>
+            <div style="display:flex; gap:15px; margin-bottom:20px; background:#15151e; padding:10px; border-radius:8px;">
+                <div style="flex:1; display:flex; justify-content:space-between;"><label>Цвет HP:</label><input type="color" id="cc_hp" value="#e74c3c"></div>
+                <div style="flex:1; display:flex; justify-content:space-between;"><label>Цвет XP:</label><input type="color" id="cc_xp" value="#9b59b6"></div>
+                <div style="flex:1; display:flex; justify-content:space-between;"><label>Цвет Настроения:</label><input type="color" id="cc_mood" value="#f1c40f"></div>
+            </div>
+
+            <h3 style="color:#d4af37;">Эмоции</h3>
+            <button id="btn-add-emo" style="background:#3498db; color:#fff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; margin-bottom:15px;">+ Добавить эмоцию</button>
+            <div id="emotions-list"></div>
+
+            <button id="btn-download-comp" style="width:100%; padding:15px; background:#d4af37; color:#000; font-weight:bold; border:none; border-radius:8px; cursor:pointer; margin-top:20px;">💾 Скачать companion.json</button>
+        `, this.container.querySelector(`#btn-add-emo`).addEventListener(`click`, () => this.addEmotion()), this.container.querySelector(`#btn-download-comp`).addEventListener(`click`, () => this.download()), this.addEmotion()
+                } addEmotion() {
+                    this.emoCount++, this.container.querySelector(`#emotions-list`).insertAdjacentHTML(`beforeend`, `
+            <div class="emo-card" style="background:#111; border:1px solid #333; padding:15px; border-radius:8px; margin-bottom:15px; position:relative;">
+                <button onclick="this.parentElement.remove()" style="position:absolute; right:10px; top:10px; background:#e74c3c; border:none; color:#fff; border-radius:4px; cursor:pointer;">X</button>
+                <div style="display:flex; gap:10px; margin-bottom:10px;">
+                    <div style="flex:1"><label>Порог (0-100):</label><input type="number" class="e_th input-base" value="50"></div>
+                    <div style="flex:2"><label>Название статуса:</label><input type="text" class="e_name input-base" value="Нормально"></div>
+                    <div style="flex:1"><label>Эмодзи:</label><input type="text" class="e_emj input-base" value="🧙‍♂️"></div>
+                    <div style="flex:2">
+                        <label>Спрайт (.png):</label>
+                        <input type="text" class="e_img input-base" value="idle.png">
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <div style="flex:1"><label>Приветствие:</label><input type="text" class="e_gr input-base" value="Привет."></div>
+                    <div style="flex:1"><label>Квест сдан:</label><input type="text" class="e_dn input-base" value="Отлично!"></div>
+                    <div style="flex:1"><label>Левелап (тег {level}):</label><input type="text" class="e_lvl input-base" value="Уровень {level}!"></div>
+                </div>
+            </div>
+        `)
+                } download() { let e = document.getElementById(`c_id`).value || `default`, t = { id: e, name: document.getElementById(`c_name`).value, maxHp: parseInt(document.getElementById(`c_hp`).value), terminology: { hp: document.getElementById(`ct_hp`).value, xp: document.getElementById(`ct_xp`).value, mood: document.getElementById(`ct_mood`).value }, colors: { hp: document.getElementById(`cc_hp`).value, xp: document.getElementById(`cc_xp`).value, mood: document.getElementById(`cc_mood`).value }, emotions: [] }; this.container.querySelectorAll(`.emo-card`).forEach(e => { t.emotions.push({ threshold: parseInt(e.querySelector(`.e_th`).value), mood_name: e.querySelector(`.e_name`).value, avatar_text: e.querySelector(`.e_emj`).value, icon_img: e.querySelector(`.e_img`).value, phrases: { greeting: e.querySelector(`.e_gr`).value, task_done: [e.querySelector(`.e_dn`).value], level_up: e.querySelector(`.e_lvl`).value, death: `Смерть...` } }) }), t.emotions.sort((e, t) => t.threshold - e.threshold), r(`companion_${e}.json`, JSON.stringify(t, null, 4)) }
+            }, n = class {
+                constructor(e) { this.container = e, this.itemCount = 0, this.encCount = 0 } render() {
+                    this.container.innerHTML = `
+            <h2>🌍 Генератор Вселенной</h2>
+            <div style="display:flex; gap:15px; margin-bottom:20px;">
+                <div style="flex:1"><label>ID Вселенной:</label><input type="text" id="u_id" value="my_universe" class="input-base"></div>
+                <div style="flex:1"><label>Название мира:</label><input type="text" id="u_name" value="Новый мир" class="input-base"></div>
+            </div>
+
+            <h3 style="color:#d4af37;">🎒 Предметы</h3>
+            <button id="btn-add-item" style="background:#3498db; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; margin-bottom:15px; font-weight:bold;">+ Добавить предмет</button>
+            <div id="u-items-list"></div>
+
+            <h3 style="color:#d4af37; margin-top:40px;">🎲 Случайные События</h3>
+            <button id="btn-add-enc" style="background:#e67e22; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; margin-bottom:15px; font-weight:bold;">+ Добавить событие</button>
+            <div id="u-enc-list"></div>
+
+            <button id="btn-download-uni" style="width:100%; padding:15px; background:#d4af37; color:#000; font-weight:bold; border:none; border-radius:8px; cursor:pointer; margin-top:30px;">🌍 Скачать universe.json</button>
+        `, this.container.querySelector(`#btn-add-item`).addEventListener(`click`, () => this.addItem()), this.container.querySelector(`#btn-add-enc`).addEventListener(`click`, () => this.addEncounter()), this.container.querySelector(`#btn-download-uni`).addEventListener(`click`, () => this.download()), this.addItem()
+                } addItem() {
+                    let e = `
+            <div class="u-item" style="background:#1e1e2e; border:1px solid #4a3b52; padding:15px; border-radius:8px; margin-bottom:15px; position:relative;">
+                <button onclick="this.parentElement.remove()" style="position:absolute; right:10px; top:10px; background:#e74c3c; border:none; color:#fff; padding:5px 10px; border-radius:4px; cursor:pointer;">Удалить</button>
+                <div style="display:flex; gap:10px; margin-bottom:10px;">
+                    <div style="flex:1"><label>ID (англ):</label><input type="text" class="i_id input-base" value="item_${this.itemCount++}"></div>
+                    <div style="flex:1"><label>Имя в игре:</label><input type="text" class="i_name input-base" value="Новая вещь"></div>
+                </div>
+                <div style="display:flex; gap:10px; margin-bottom:10px;">
+                    <div style="flex:1"><label>Картинка (необяз.):</label><input type="text" class="i_img input-base" placeholder="potion.png"></div>
+                    <div style="flex:1"><label>Эмодзи (Запасной):</label><input type="text" class="i_emj input-base" value="📦"></div>
+                    <div style="flex:1"><label>Цена в лавке:</label><input type="number" class="i_price input-base" value="10"></div>
+                </div>
+                
+                \x3C!-- НОВОЕ ПОЛЕ: ФРАЗА ПЕРСОНАЖА -->
+                <div style="margin-bottom:15px;">
+                    <label style="color:#3498db;">Фраза персонажа при использовании / надевании (необяз.):</label>
+                    <input type="text" class="i_phrase input-base" placeholder="Ух, зря я это выпил...">
+                </div>
+
+                <div style="display:flex; gap:10px; margin-bottom:15px;">
+                    <div style="flex:1">
+                        <label>Тип предмета:</label>
+                        <select class="i_type input-base" onchange="window.toggleItemUI(this)">
+                            <option value="consumable">Расходник (Зелье/Свиток)</option>
+                            <option value="equipment">Экипировка</option>
+                            <option value="lootbox">Лутбокс (Сундук)</option>
+                        </select>
+                    </div>
+                    <div style="flex:1">
+                        <label>Редкость:</label>
+                        <select class="i_rarity input-base"><option value="common">Обычный</option><option value="rare">Редкий</option><option value="epic">Эпик</option><option value="legendary">Легендарный</option></select>
+                    </div>
+                </div>
+                
+                \x3C!-- Расходник -->
+                <div class="type-ui ui-consumable" style="background:#15151e; padding:10px; border-radius:6px;">
+                    <label style="color:#aaa;">Эффекты при использовании:</label>
+                    <div class="cons-eff-list" style="margin-bottom:10px;"></div>
+                    <button onclick="window.addConsEff(this)" style="background:#2c3e50; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:12px;">+ Добавить Эффект</button>
+                </div>
+                
+                \x3C!-- Экипировка -->
+                <div class="type-ui ui-equipment" style="display:none; background:#15151e; padding:10px; border-radius:6px;">
+                    <div style="display:flex; gap:10px;">
+                        <div style="flex:1"><label>Слот:</label><select class="i_eq_slot input-base"><option value="head">Голова</option><option value="body">Тело</option><option value="weapon">Оружие</option><option value="accessory">Аксессуар</option></select></div>
+                        <div style="flex:2"><label>Статы JSON:</label><input type="text" class="i_eq_stats input-base" value='{"S": 1}'></div>
+                    </div>
+                </div>
+
+                \x3C!-- Лутбокс -->
+                <div class="type-ui ui-lootbox" style="display:none; background:#15151e; padding:10px; border-radius:6px;">
+                    <div style="display:flex; gap:10px;">
+                        <div style="flex:1"><label>Крутки:</label><input type="number" class="i_lb_rolls input-base" value="1"></div>
+                        <div style="flex:2"><label>Шансы JSON:</label><input type="text" class="i_lb_chances input-base" value='{"common": 100}'></div>
+                    </div>
+                </div>
+            </div>`; this.container.querySelector(`#u-items-list`).insertAdjacentHTML(`beforeend`, e), window.toggleItemUI = e => { let t = e.closest(`.u-item`); t.querySelectorAll(`.type-ui`).forEach(e => e.style.display = `none`), t.querySelector(`.ui-` + e.value).style.display = `block` }, window.addConsEff = e => {
+                        e.previousElementSibling.insertAdjacentHTML(`beforeend`, `
+                <div class="cons-eff-row" style="display:flex; gap:5px; margin-top:5px; align-items:center;">
+                    <select class="c_eff_type input-base" style="flex:2; padding:5px;">
+                        <option value="gain_hp">Дать Здоровье</option><option value="lose_hp">Отнять Здоровье</option>
+                        <option value="gain_xp">Дать Опыт</option><option value="lose_xp">Отнять Опыт</option>
+                        <option value="gain_coins">Дать Золото</option><option value="lose_coins">Отнять Золото</option>
+                        <option value="gain_mood">Дать Мораль</option><option value="lose_mood">Отнять Мораль</option>
+                    </select>
+                    <input type="number" class="c_eff_val input-base" style="flex:1; padding:5px;" value="20">
+                    <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#e74c3c; cursor:pointer; font-size:16px;">×</button>
+                </div>`)
+                    }
+                } addEncounter() { } download() { let e = document.getElementById(`u_id`).value || `default`, t = { id: e, name: document.getElementById(`u_name`).value, items: [], encounters: [] }; this.container.querySelectorAll(`.u-item`).forEach(e => { let n = { id: e.querySelector(`.i_id`).value, name: e.querySelector(`.i_name`).value, type: e.querySelector(`.i_type`).value, rarity: e.querySelector(`.i_rarity`).value, icon_text: e.querySelector(`.i_emj`).value, price: parseInt(e.querySelector(`.i_price`).value) }, r = e.querySelector(`.i_img`).value; r && (n.icon_img = r); let i = e.querySelector(`.i_phrase`).value; if (i.trim() !== `` && (n.use_phrase = i), n.type === `consumable` && (n.effects = [], e.querySelectorAll(`.cons-eff-row`).forEach(e => { n.effects.push({ type: e.querySelector(`.c_eff_type`).value, value: parseInt(e.querySelector(`.c_eff_val`).value) }) })), n.type === `equipment`) { n.equipSlot = e.querySelector(`.i_eq_slot`).value; try { n.bonus_stats = JSON.parse(e.querySelector(`.i_eq_stats`).value) } catch { n.bonus_stats = {} } } if (n.type === `lootbox`) try { n.lootbox_data = { rolls: parseInt(e.querySelector(`.i_lb_rolls`).value), chances: JSON.parse(e.querySelector(`.i_lb_chances`).value) } } catch { } t.items.push(n) }), r(`universe_${e}.json`, JSON.stringify(t, null, 4)) }
+            }; document.addEventListener(`DOMContentLoaded`, () => { let r = document.querySelectorAll(`.tab-btn`), i = document.querySelectorAll(`.tab-content`); r.forEach(e => { e.addEventListener(`click`, () => { r.forEach(e => e.classList.remove(`active`)), i.forEach(e => e.classList.remove(`active`)), e.classList.add(`active`), document.getElementById(e.dataset.target).classList.add(`active`) }) }), new e(document.getElementById(`theme-controls`)).render(), new t(document.getElementById(`companion`)).render(), new n(document.getElementById(`universe`)).render() }); function r(e, t) { let n = document.createElement(`a`); n.href = window.URL.createObjectURL(new Blob([t], { type: `text/plain` })), n.download = e, n.click(), window.URL.revokeObjectURL(n.href) }</script>
+    <style rel="stylesheet" crossorigin>
+        :root {
+            --bg-main: #111;
+            --bg-card: #1e1e2e;
+            --primary: #d4af37;
+            --text: #eee
+        }
+
+        body {
+            background: var(--bg-main);
+            color: var(--text);
+            padding: 20px;
+            font-family: sans-serif
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 20px
+        }
+
+        .tabs {
+            gap: 10px;
+            margin-bottom: 20px;
+            display: flex
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px
+        }
+
+        .tab-btn.active {
+            border: 2px solid var(--primary);
+            color: var(--primary)
+        }
+
+        .tab-content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            display: none
+        }
+
+        .tab-content.active {
+            display: block
+        }
+
+        .row {
+            gap: 20px;
+            display: flex
+        }
+
+        .col {
+            flex: 1
+        }
+
+        .obsidian-mock {
+            --p-bg1: #1a1625;
+            --p-bg2: #130f1c;
+            --p-text1: #eaddb6;
+            --p-text2: #8b7d9c;
+            --p-accent: #f1c40f;
+            --p-border: #4a3b52;
+            --p-hp: #e74c3c;
+            --p-xp: #9b59b6;
+            background: var(--p-bg1);
+            height: 400px;
+            color: var(--p-text1);
+            border: 2px solid #333;
+            border-radius: 8px;
+            flex-direction: column;
+            font-family: serif;
+            transition: all .3s;
+            display: flex;
+            position: relative;
+            overflow: hidden
+        }
+
+        .obs-header {
+            text-align: center;
+            color: #888;
+            border-bottom: 1px solid var(--p-border);
+            background: #000;
+            padding: 5px;
+            font-family: sans-serif;
+            font-size: 12px
+        }
+
+        .obs-workspace {
+            flex-grow: 1;
+            display: flex
+        }
+
+        .obs-ribbon {
+            border-right: 1px solid var(--p-border);
+            background: #0a0a0a;
+            justify-content: center;
+            width: 40px;
+            padding-top: 10px;
+            display: flex
+        }
+
+        .obs-sidebar {
+            background: var(--p-bg2);
+            width: 150px;
+            color: var(--p-text2);
+            padding: 10px;
+            font-size: 14px
+        }
+
+        .obs-sidebar.left {
+            border-right: 1px solid var(--p-border)
+        }
+
+        .obs-sidebar.right {
+            border-left: 1px solid var(--p-border)
+        }
+
+        .obs-editor {
+            background: var(--p-bg1);
+            flex-grow: 1;
+            padding: 20px
+        }
+
+        .obs-editor h1 {
+            color: var(--p-accent);
+            margin-top: 0;
+            font-size: 20px
+        }
+
+        .obs-jrpg-panel {
+            background: var(--p-bg2);
+            border: 2px solid var(--p-border);
+            border-radius: 8px;
+            align-items: center;
+            gap: 15px;
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translate(-50%);
+            box-shadow: 0 5px 15px #00000080
+        }
+
+        .obs-jrpg-avatar {
+            border: 2px solid var(--p-border);
+            background: #000;
+            border-radius: 4px;
+            padding: 5px;
+            font-size: 30px
+        }
+
+        .obs-jrpg-dialog {
+            flex-grow: 1
+        }
+
+        .obs-jrpg-name {
+            color: var(--p-accent);
+            margin-bottom: 5px;
+            font-weight: 700
+        }
+
+        .obs-jrpg-text {
+            font-size: 14px;
+            font-style: italic
+        }
+
+        .obs-jrpg-stats {
+            flex-direction: column;
+            gap: 5px;
+            width: 100px;
+            font-size: 12px;
+            display: flex
+        }
+
+        .bar {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            width: 100%;
+            height: 8px
+        }
+
+        .fill {
+            border-radius: 4px;
+            height: 100%
+        }
+
+        .hp-fill {
+            background: var(--p-hp);
+            width: 70%
+        }
+
+        .xp-fill {
+            background: var(--p-xp);
+            width: 40%
+        }
+
+        .input-base {
+            color: #eaddb6;
+            box-sizing: border-box;
+            background: #15151e;
+            border: 1px solid #4a3b52;
+            border-radius: 6px;
+            width: 100%;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all .2s
+        }
+
+        .input-base:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 8px #d4af374d
+        }
+
+        .input-base::placeholder {
+            color: #555
+        }
+
+        /*$vite$:1*/
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>🛠️ Chronicle.md: Кузница Миров</h1>
+            <p>Создавай свои миры и персонажей без программирования.</p>
+        </div>
+
+        <!-- Навигация -->
+        <div class="tabs">
+            <button class="tab-btn active" data-target="companion">🧙‍♂️ Компаньон</button>
+            <button class="tab-btn" data-target="theme">🎨 Цветовая Тема</button>
+            <button class="tab-btn" data-target="universe">🌍 Вселенная и События</button>
+        </div>
+
+        <!-- Вкладки (Содержимое будет генерироваться через JS) -->
+        <div id="companion" class="tab-content active"></div>
+
+        <div id="theme" class="tab-content">
+            <div class="row">
+                <div class="col" id="theme-controls">
+                    <!-- Сюда ThemeGenerator вставит ползунки цветов -->
+                </div>
+                <div class="col">
+                    <!-- ТОТ САМЫЙ МОКАП ОБСИДИАНА -->
+                    <div class="obsidian-mock">
+                        <div class="obs-header">Мой Хранилище - Obsidian v1.5.0</div>
+                        <div class="obs-workspace">
+                            <!-- Левая колонка -->
+                            <div class="obs-ribbon"><span>⚙️</span></div>
+                            <div class="obs-sidebar left">Файлы<br><br>📂 universes<br>📂 companions</div>
+
+                            <!-- Центр (Редактор) -->
+                            <div class="obs-editor">
+                                <h1># 🗡️ Задачи на сегодня</h1>
+                                <div class="task">- [ ] Выучить JS #boss</div>
+                                <div class="task">- [x] Покормить кота #Routine</div>
+                            </div>
+
+                            <!-- Правая колонка (Журнал Квестов) -->
+                            <div class="obs-sidebar right">
+                                <h3 style="color: var(--p-accent); margin-top:0;">📜 Журнал</h3>
+                                <div class="task">Локация: Дом</div>
+                            </div>
+                        </div>
+
+                        <!-- JRPG ПАНЕЛЬ ПЛАГИНА (ВНИЗУ ПО ЦЕНТРУ) -->
+                        <div class="obs-jrpg-panel">
+                            <div class="obs-jrpg-avatar">🧙‍♂️</div>
+                            <div class="obs-jrpg-dialog">
+                                <div class="obs-jrpg-name">Архимаг Геннадий</div>
+                                <div class="obs-jrpg-text">«Мокап Обсидиана выглядит отлично! Цвета работают!»</div>
+                            </div>
+                            <div class="obs-jrpg-stats">
+                                <div>HP <div class="bar">
+                                        <div class="fill hp-fill"></div>
+                                    </div>
+                                </div>
+                                <div>XP <div class="bar">
+                                        <div class="fill xp-fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="universe" class="tab-content"></div>
+    </div>
+
+
+</body>
+
+</html>

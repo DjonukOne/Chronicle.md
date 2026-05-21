@@ -1,0 +1,28 @@
+@import "./modules/jrpg-panel.css";
+@import "./modules/quest-log.css";
+@import "./modules/calendar.css";
+@import "./modules/shop.css";
+@import "./modules/inventory.css";
+@import "./modules/character.css";
+
+/* --- ГЛАВНАЯ КНОПКА Chronicle.md --- */
+.rpg-ribbon-icon {
+    margin-top: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.rpg-master-icon svg {
+    color: var(--interactive-accent, #d4af37) !important;
+    filter: drop-shadow(0 0 5px var(--interactive-accent, #d4af37));
+    transition: all 0.3s ease;
+}
+
+.rpg-master-icon:hover {
+    background-color: rgba(212, 175, 55, 0.2) !important;
+}
+
+.rpg-master-icon:hover svg {
+    transform: scale(1.15) rotate(5deg);
+}

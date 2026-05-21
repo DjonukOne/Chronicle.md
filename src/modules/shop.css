@@ -1,0 +1,160 @@
+/* ==========================================
+   МАГАЗИН
+========================================== */
+.rpg-shop-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rpg-shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rpg-shop-balance {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--interactive-accent);
+    background: var(--background-secondary);
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+/* Сетка товаров */
+.rpg-shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+/* Карточка одного предмета */
+.rpg-item-card {
+    background: var(--background-primary);
+    border: 2px solid var(--background-modifier-border);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rpg-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Верхняя часть (Иконка + Название) */
+.rpg-item-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.rpg-item-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    line-height: 1;
+    background: var(--background-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--background-modifier-border);
+    overflow: hidden;
+}
+
+.rpg-item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Картинка не сплющится, а впишется в квадрат */
+}
+
+.rpg-item-info {
+    flex-grow: 1;
+}
+
+.rpg-item-name {
+    font-weight: bold;
+    color: var(--interactive-accent);
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.rpg-item-desc {
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-style: italic;
+    margin-top: 4px;
+    line-height: 1.3;
+}
+
+/* Кнопка Купить */
+.rpg-item-action {
+    background: var(--background-secondary);
+    border: 1px solid var(--interactive-accent);
+    color: var(--text-normal);
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    margin-top: auto;
+}
+
+.rpg-item-action:hover:not(:disabled) {
+    background: var(--interactive-accent);
+    color: var(--background-primary);
+}
+
+.rpg-item-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}
+
+/* Цвета редкости предметов */
+.rpg-rarity-common .rpg-item-name {
+    color: #bdc3c7;
+}
+
+.rpg-rarity-rare .rpg-item-name {
+    color: #3498db;
+}
+
+.rpg-rarity-epic .rpg-item-name {
+    color: #9b59b6;
+    text-shadow: 0 0 5px rgba(155, 89, 182, 0.5);
+}
+
+.rpg-rarity-legendary .rpg-item-name {
+    color: #f1c40f;
+    text-shadow: 0 0 8px rgba(241, 196, 15, 0.8);
+}
+
+.rpg-rarity-common .rpg-item-icon {
+    border-color: #bdc3c7;
+}
+
+.rpg-rarity-rare .rpg-item-icon {
+    border-color: #3498db;
+    box-shadow: inset 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+.rpg-rarity-epic .rpg-item-icon {
+    border-color: #9b59b6;
+    box-shadow: inset 0 0 15px rgba(155, 89, 182, 0.3);
+}
+
+.rpg-rarity-legendary .rpg-item-icon {
+    border-color: #f1c40f;
+    box-shadow: inset 0 0 20px rgba(241, 196, 15, 0.4);
+}
