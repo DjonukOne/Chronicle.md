@@ -85,12 +85,27 @@
 
 .rpg-sidebar-icon {
     font-size: 4em;
-    text-align: center;
     margin-bottom: 10px;
     background: var(--background-secondary);
     border-radius: 8px;
     padding: 10px;
     border: 1px inset var(--background-modifier-border);
+    
+    /* ДОБАВЛЕНО: Жестко ограничиваем высоту превью-окна */
+    height: 120px; 
+    
+    /* ДОБАВЛЕНО: Центрируем содержимое (картинку или эмодзи) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* ДОБАВЛЕНО: Страховочный стиль для самой картинки внутри */
+.rpg-sidebar-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Картинка сохранит пропорции и не сплющится */
 }
 
 .rpg-sidebar-name {
